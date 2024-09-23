@@ -26,10 +26,6 @@ class Seeder
     db.execute('INSERT INTO fruits (name, tastiness, description) VALUES ("Banan",  4, "En avlång gul frukt.")')
     db.execute('INSERT INTO fruits (name, tastiness, description) VALUES ("Vindruva",  10, "Alkohol")')
     db.execute('INSERT INTO fruits (name, tastiness, description) VALUES ("Mango",  9, "Nice utan kärnan")')
-    db.execute('INSERT INTO fruits (name, tastiness, description) VALUES ("Banan",  4, "En avlång gul frukt.")')
-    db.execute('INSERT INTO fruits (name, tastiness, description) VALUES ("Banan",  4, "En avlång gul frukt.")')
-    db.execute('INSERT INTO fruits (name, tastiness, description) VALUES ("Banan",  4, "En avlång gul frukt.")')
-    db.execute('INSERT INTO fruits (name, tastiness, description) VALUES ("Banan",  4, "En avlång gul frukt.")')
 
   end
 

@@ -45,4 +45,13 @@ class App < Sinatra::Base
         erb(:"fruits/show")
     end
 
+    post '/fruits/:id/delete' do | id |
+        #todo: ta bort frukten med idt
+        db.execute('DELETE FROM fruits WHERE id = ?', id)
+        @fruits = db.execute('SELECT name FROM fruits')
+        erb(:"fruits/index")
+        
+    end
+        
+
 end
