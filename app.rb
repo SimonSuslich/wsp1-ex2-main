@@ -48,10 +48,28 @@ class App < Sinatra::Base
     post '/fruits/:id/delete' do | id |
         #todo: ta bort frukten med idt
         db.execute('DELETE FROM fruits WHERE id = ?', id)
-        @fruits = db.execute('SELECT name FROM fruits')
-        erb(:"fruits/index")
-        
+        redirect("/fruits")        
     end
         
+
+    get '/fruits/new' do
+
+        erb(:"fruits/new")
+    end
+
+    post '/fruits' do | name, tastiness, description |
+        # Spara fruit_name & fruit_description till variabler 
+        # name & description
+        name = fruit_name
+        tastiness = fruit_tastiness
+        description = fruit_description
+    
+    # SQL Insert
+        db.execute("INSERT INTO fruits (name, tastiness,description) VALUES(?,?,?)", [name, tastiness,description])
+    
+    # Redirect
+        redirect("/fruits")
+        
+    end
 
 end
