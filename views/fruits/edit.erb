@@ -1,0 +1,6 @@
+<form action="/fruits/<%= @fruit ['id']%>/update" method="post">
+   <label>Frukt <input type="text" value="<%= @fruit ['name']%>" name="name"></label>
+   <label>Beskrivning <input type="text" value="<%= @fruit ['tastiness']%>" name="description"></label>
+   <label>Tastiness <input type="integer" value="<%= @fruit ['description']%>" name="tastiness"></label>
+   <input type="submit" value="Spara">
+</form>

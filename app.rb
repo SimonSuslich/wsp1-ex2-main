@@ -41,7 +41,6 @@ class App < Sinatra::Base
       
         @fruit = db.execute('SELECT * FROM fruits WHERE id=?', id_num).first
    
-        # @beskrivning = db.execute('SELECT description FROM fruits WHERE id==id')
         erb(:"fruits/show")
     end
 
@@ -50,26 +49,36 @@ class App < Sinatra::Base
         db.execute('DELETE FROM fruits WHERE id = ?', id)
         redirect("/fruits")        
     end
+
+
+    post '/fruits/new' do 
+        name = params['name']
+        tastiness = params['tastiness']
+        description = params['description']
         
+        db.execute("INSERT INTO fruits (name, tastiness, description) VALUES(?,?,?)", [name, tastiness, description])
+        redirect("/fruits/new")
 
-    get '/fruits/new' do
-
-        erb(:"fruits/new")
     end
 
-    post '/fruits' do | name, tastiness, description |
-        # Spara fruit_name & fruit_description till variabler 
-        # name & description
-        name = fruit_name
-        tastiness = fruit_tastiness
-        description = fruit_description
-    
-    # SQL Insert
-        db.execute("INSERT INTO fruits (name, tastiness,description) VALUES(?,?,?)", [name, tastiness,description])
-    
-    # Redirect
+    get '/fruits/:id/edit' do |id|
+        @fruit = db.execute('SELECT * FROM fruits WHERE id=?', id).first
+        erb(:"fruits/edit")
+    end
+        
+
+    post '/fruits/:id/update' do |id|
+
+
+        name = params['name']
+        tastiness = params['tastiness']
+        description = params['description']
+        
+        db.execute("UPDATE fruits SET name=?, description=?, tastiness=? WHERE id=?", [[name, tastiness, description], id])
         redirect("/fruits")
-        
+
     end
+
+
 
 end
